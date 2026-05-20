@@ -1,0 +1,55 @@
+# ===== Java / Maven / Gradle =====
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+.mvn/wrapper/maven-wrapper.jar
+.gradle/
+
+# ===== Spring Boot =====
+*.log
+application-local.properties
+application-local.yml
+
+# ===== Node / Frontend =====
+node_modules/
+dist/
+.vite/
+.next/
+.parcel-cache/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===== Variables de entorno =====
+.env
+.env.local
+.env.*.local
+
+# ===== IDEs =====
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.project
+.classpath
+.factorypath
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# ===== Sistema operativo =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
