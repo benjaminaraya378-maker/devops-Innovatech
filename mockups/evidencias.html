@@ -1,0 +1,1152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Evidencias EP2 · Innovatech · Mockups fieles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Reset y tipografía base
+   ============================================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#525252;color:#1a1a1a;-webkit-font-smoothing:antialiased}
+body{padding:24px}
+
+/* ============================================================
+   Barra de ayuda superior y wrappers de figura
+   ============================================================ */
+.help{max-width:1280px;margin:0 auto 28px;background:#fff8e1;border-left:5px solid #f9a825;border-radius:6px;padding:14px 22px;color:#5d4037;font-size:14px;line-height:1.55}
+.help h1{font-size:18px;margin-bottom:6px;color:#3e2723}
+.help code{background:#fff;padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px}
+
+.figure{max-width:1280px;margin:0 auto 36px;border-radius:6px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.35);position:relative}
+.fig-tag{background:#0d1117;color:#fafafa;padding:6px 14px;font-size:12px;font-family:'JetBrains Mono',monospace;letter-spacing:.4px;border-bottom:3px solid #ec7211}
+
+/* ============================================================
+   AWS CONSOLE 2024 — paleta exacta
+   ============================================================ */
+.aws-root{background:#fafafa;font-family:'Amazon Ember','Helvetica Neue','Inter',sans-serif;color:#16191f}
+
+.aws-nav{background:#161e2d;color:#fff;height:40px;display:flex;align-items:center;padding:0 16px;gap:24px;font-size:14px}
+.aws-logo-wrap{display:flex;align-items:center;gap:24px}
+.aws-svc-logo{width:38px;height:24px;background:#fff;border-radius:2px;display:flex;align-items:center;justify-content:center}
+.aws-svc-logo svg{width:32px;height:18px}
+.aws-nav-item{display:flex;align-items:center;gap:6px;color:#dde4ec;cursor:default}
+.aws-nav-search{flex:1;max-width:520px;background:#0f1623;border:1px solid #404a5b;border-radius:4px;height:28px;display:flex;align-items:center;gap:8px;padding:0 10px;color:#9aa7b9;font-size:13px}
+.aws-nav-right{display:flex;align-items:center;gap:16px;font-size:13px;color:#dde4ec}
+.aws-nav-region{display:flex;align-items:center;gap:6px}
+
+.aws-subnav{background:#232f3e;height:36px;display:flex;align-items:center;padding:0 16px;color:#fff;font-size:13px;gap:18px}
+.aws-subnav-item{cursor:default}
+.aws-subnav-item.active{color:#fff;border-bottom:2px solid #ec7211;padding:8px 0}
+
+.aws-page{display:flex;min-height:560px}
+.aws-side{width:240px;background:#fff;border-right:1px solid #d5dbdb;padding:14px 0;font-size:14px;flex-shrink:0}
+.aws-side-section{font-weight:700;padding:8px 16px;color:#0f1b2a}
+.aws-side-item{padding:6px 16px 6px 28px;color:#0972d3;cursor:default;font-size:13px}
+.aws-side-item.active{background:#f1faff;color:#0f1b2a;border-left:3px solid #0972d3;padding-left:25px;font-weight:600}
+.aws-side-item:hover:not(.active){background:#f5f9fc}
+
+.aws-main{flex:1;padding:24px 28px;background:#fafafa}
+.aws-bread{font-size:13px;color:#5f6b7a;margin-bottom:8px}
+.aws-bread a{color:#0972d3;text-decoration:none}
+.aws-bread .sep{margin:0 6px;color:#aab7c4}
+.aws-title{font-size:24px;font-weight:700;color:#0f1b2a;margin-bottom:6px;letter-spacing:-.01em}
+.aws-title .count{color:#5f6b7a;font-weight:400;font-size:18px}
+
+.aws-toolbar{display:flex;align-items:center;gap:8px;margin:18px 0 14px}
+.aws-btn{height:32px;padding:0 14px;border-radius:18px;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px;cursor:default;border:none}
+.aws-btn-default{background:#fff;color:#0972d3;border:1px solid #0972d3}
+.aws-btn-primary{background:#0972d3;color:#fff}
+.aws-btn-amazon{background:#ec7211;color:#fff;border:1px solid #ec7211}
+.aws-search{margin-left:auto;width:260px;height:32px;background:#fff;border:1px solid #aab7c4;border-radius:16px;display:flex;align-items:center;padding:0 12px;gap:8px;color:#7d8b9a;font-size:13px}
+
+.aws-card{background:#fff;border:1px solid #d5dbdb;border-radius:8px;overflow:hidden}
+.aws-card-head{padding:14px 18px;border-bottom:1px solid #d5dbdb;display:flex;align-items:center;justify-content:space-between}
+.aws-card-title{font-size:18px;font-weight:700;color:#0f1b2a}
+table.aws-table{width:100%;border-collapse:collapse;font-size:14px}
+.aws-table thead th{background:#f2f3f3;color:#0f1b2a;text-align:left;padding:10px 14px;border-bottom:1px solid #d5dbdb;font-weight:700;font-size:13px;letter-spacing:.01em;white-space:nowrap}
+.aws-table tbody td{padding:12px 14px;border-bottom:1px solid #eaeded;color:#0f1b2a;vertical-align:middle}
+.aws-table tbody tr:hover{background:#f9fafb}
+.aws-table .chk{width:32px}
+.aws-table input[type=checkbox]{accent-color:#0972d3}
+.aws-link{color:#0972d3;text-decoration:none}
+.aws-mono{font-family:'JetBrains Mono',monospace;font-size:13px}
+
+.aws-state{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:13px;color:#037f0c}
+.aws-state .dot{width:8px;height:8px;border-radius:50%;background:#037f0c;box-shadow:0 0 0 3px #e1f5e6}
+.aws-dash{color:#aab7c4}
+
+.aws-tabs{display:flex;border-bottom:1px solid #d5dbdb;padding:0 18px;background:#fff}
+.aws-tab{padding:12px 14px;font-size:14px;color:#5f6b7a;font-weight:600;border-bottom:3px solid transparent;cursor:default}
+.aws-tab.active{color:#0f1b2a;border-bottom-color:#0972d3}
+
+.aws-pill-sg{display:inline-flex;align-items:center;gap:6px;background:#f1faff;border:1px solid #b5d6f4;color:#033160;padding:2px 8px;border-radius:12px;font-size:12px;font-family:'JetBrains Mono',monospace}
+
+/* ============================================================
+   WINDOWS TERMINAL look
+   ============================================================ */
+.wt{background:#0c0c0c;color:#cccccc;font-family:'Cascadia Code','JetBrains Mono','Consolas',monospace}
+.wt-tabbar{background:#1e1e1e;display:flex;align-items:center;height:30px;padding:0 6px;border-bottom:1px solid #000}
+.wt-tab{display:flex;align-items:center;gap:8px;background:#0c0c0c;color:#cccccc;font-family:'Segoe UI',sans-serif;font-size:12px;height:26px;padding:0 14px;border-radius:6px 6px 0 0;margin-top:4px}
+.wt-tab-i{width:14px;height:14px;background:#0078d4;border-radius:2px;display:inline-block}
+.wt-spacer{flex:1}
+.wt-controls{display:flex;gap:0}
+.wt-ctrl{width:46px;height:30px;display:flex;align-items:center;justify-content:center;color:#bbb;font-family:'Segoe UI Symbol',sans-serif}
+.wt-ctrl.close:hover{background:#c42b1c;color:#fff}
+.wt-body{padding:14px 20px;font-size:14px;line-height:1.55;min-height:360px;white-space:pre-wrap;font-variant-ligatures:none}
+.wt-body code{font-family:inherit}
+.wt-prompt{color:#16c60c}
+.wt-prompt2{color:#3a96dd}
+.wt-cmd{color:#f9f1a5}
+.wt-out{color:#cccccc}
+.wt-ok{color:#16c60c}
+.wt-warn{color:#f9f1a5}
+.wt-err{color:#e74856}
+.wt-dim{color:#767676}
+.wt-cyan{color:#61d6d6}
+.wt-mag{color:#b4009e}
+
+/* ============================================================
+   CHROME BROWSER look (Windows 11)
+   ============================================================ */
+.chrome{background:#fff;font-family:'Roboto','Segoe UI',sans-serif}
+.chrome-titlebar{background:#dee1e6;height:36px;display:flex;align-items:flex-end;padding:0 8px;gap:4px}
+.chrome-tab{background:#fff;height:30px;padding:0 16px 0 12px;border-radius:8px 8px 0 0;display:flex;align-items:center;gap:8px;font-size:13px;color:#202124;min-width:200px;max-width:260px;box-shadow:0 -1px 0 #c4c7c8}
+.chrome-tab-i{width:14px;height:14px;background:#5f6368;border-radius:2px}
+.chrome-tab-x{margin-left:auto;color:#5f6368;font-size:14px}
+.chrome-newtab{color:#5f6368;font-size:18px;padding:0 8px;align-self:center}
+.chrome-toolbar{background:#fff;height:42px;display:flex;align-items:center;padding:0 12px;gap:8px;border-bottom:1px solid #dadce0}
+.chrome-nav{color:#5f6368;font-size:16px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.chrome-url{flex:1;height:30px;background:#f1f3f4;border-radius:18px;display:flex;align-items:center;padding:0 14px;gap:10px;font-size:14px;color:#202124}
+.chrome-lock{color:#5f6368;font-size:14px}
+.chrome-body{min-height:480px;background:#fff;position:relative}
+
+/* ============================================================
+   GITHUB DARK THEME 2024 — paleta exacta
+   ============================================================ */
+.gh{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;font-size:14px;line-height:1.5}
+.gh-header{background:#0d1117;border-bottom:1px solid #21262d;padding:12px 32px;display:flex;align-items:center;gap:16px}
+.gh-logo{width:32px;height:32px;color:#fff}
+.gh-search{flex:0 1 240px;background:#0d1117;border:1px solid #30363d;border-radius:6px;height:30px;display:flex;align-items:center;padding:0 10px;color:#7d8590;font-size:13px;gap:8px}
+.gh-search-kbd{margin-left:auto;background:#161b22;border:1px solid #30363d;border-radius:3px;padding:1px 6px;font-size:11px;color:#7d8590;font-family:'JetBrains Mono',monospace}
+.gh-headlinks{display:flex;gap:16px;font-size:14px;font-weight:600;color:#e6edf3}
+.gh-headlinks span{cursor:default}
+.gh-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#fd7e14,#d63384);margin-left:auto;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px}
+
+.gh-repohead{padding:16px 32px 0;border-bottom:1px solid #21262d;background:#0d1117}
+.gh-repotitle{display:flex;align-items:center;gap:8px;font-size:20px;margin-bottom:14px}
+.gh-repotitle a{color:#2f81f7;font-weight:600;text-decoration:none}
+.gh-repotitle .slash{color:#7d8590}
+.gh-pubpill{margin-left:8px;border:1px solid #30363d;color:#e6edf3;padding:1px 10px;border-radius:12px;font-size:12px;font-weight:500}
+.gh-tabs{display:flex;gap:0;margin-top:8px}
+.gh-tab{padding:8px 12px;font-size:14px;color:#e6edf3;border-bottom:2px solid transparent;display:flex;align-items:center;gap:6px;cursor:default;border-radius:6px 6px 0 0}
+.gh-tab:hover{background:#21262d}
+.gh-tab.active{border-bottom-color:#fd7e14;font-weight:600}
+.gh-tab .badge{background:#30363d;color:#e6edf3;border-radius:10px;padding:0 6px;font-size:12px;margin-left:4px}
+
+.gh-content{padding:24px 32px}
+.gh-h1{font-size:24px;font-weight:600;color:#e6edf3;margin-bottom:8px}
+.gh-h2{font-size:16px;font-weight:600;color:#e6edf3;margin:8px 0}
+.gh-subtle{color:#7d8590;font-size:14px}
+
+.gh-card{background:#0d1117;border:1px solid #30363d;border-radius:6px;overflow:hidden}
+.gh-runrow{display:flex;align-items:center;gap:12px;padding:12px 16px;border-top:1px solid #21262d}
+.gh-runrow:first-child{border-top:none}
+.gh-runrow:hover{background:#161b22}
+.gh-check{width:16px;height:16px;border-radius:50%;background:#238636;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:900;flex-shrink:0}
+.gh-runtitle{font-weight:600;color:#e6edf3}
+.gh-runmeta{font-size:12px;color:#7d8590;margin-top:2px}
+.gh-runmeta .branch{background:rgba(56,139,253,0.15);color:#79c0ff;padding:1px 6px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:11px;margin:0 4px}
+.gh-runmeta code{font-family:'JetBrains Mono',monospace;color:#7d8590}
+.gh-runtime{font-size:12px;color:#7d8590;text-align:right}
+
+.gh-pkgrow{display:flex;gap:16px;padding:16px;border-top:1px solid #21262d;align-items:center}
+.gh-pkgrow:first-child{border-top:none}
+.gh-pkgrow:hover{background:#161b22}
+.gh-pkg-i{width:48px;height:48px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:22px;flex-shrink:0}
+.gh-pkg-name{color:#2f81f7;font-size:16px;font-weight:600;text-decoration:none}
+.gh-pkg-meta{color:#7d8590;font-size:12px;margin-top:2px}
+.gh-tag{display:inline-block;background:rgba(56,139,253,0.15);color:#79c0ff;padding:1px 8px;border-radius:12px;font-size:11px;font-family:'JetBrains Mono',monospace;margin-right:4px}
+.gh-pubchip{font-size:12px;color:#7d8590;display:flex;align-items:center;gap:4px}
+
+.gh-settings-side{width:256px;flex-shrink:0;background:#0d1117;border-right:1px solid #21262d;padding:16px 0;font-size:14px}
+.gh-settings-cat{padding:6px 16px;color:#7d8590;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-top:12px}
+.gh-settings-item{padding:6px 16px;color:#e6edf3;cursor:default}
+.gh-settings-item:hover{background:#161b22}
+.gh-settings-item.active{background:#1f6feb;color:#fff;border-radius:6px;margin:0 8px;padding:6px 8px}
+
+.gh-secret{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-top:1px solid #21262d}
+.gh-secret:first-of-type{border-top:none}
+.gh-secret-left{display:flex;align-items:center;gap:10px;font-size:14px;color:#e6edf3}
+.gh-secret-key{font-family:'JetBrains Mono',monospace;font-size:13px}
+.gh-secret-right{display:flex;align-items:center;gap:8px;font-size:12px;color:#7d8590}
+.gh-iconbtn{width:28px;height:28px;border:1px solid #30363d;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;color:#e6edf3;background:#21262d}
+
+/* ============================================================
+   CHROME DEVTOOLS dark
+   ============================================================ */
+.dt{background:#202124;color:#e8eaed;font-family:'Inter','Segoe UI',sans-serif;font-size:12px}
+.dt-tabs{display:flex;background:#292a2d;height:32px;padding:0 8px;border-bottom:1px solid #3c4043;align-items:center;gap:0}
+.dt-tab{padding:0 10px;height:100%;display:flex;align-items:center;font-size:12px;color:#9aa0a6;cursor:default;position:relative}
+.dt-tab.active{color:#e8eaed}
+.dt-tab.active::after{content:"";position:absolute;left:6px;right:6px;bottom:0;height:2px;background:#8ab4f8;border-radius:2px}
+.dt-tools{height:34px;display:flex;align-items:center;gap:10px;padding:0 10px;border-bottom:1px solid #3c4043;background:#202124;font-size:12px;color:#9aa0a6}
+.dt-record{color:#f28b82;font-size:14px}
+.dt-clear{font-size:14px}
+.dt-filter{flex:0 1 220px;height:22px;background:#3c4043;border:1px solid #5f6368;border-radius:3px;padding:0 8px;color:#e8eaed;font-size:12px;display:flex;align-items:center;gap:6px}
+.dt-chip{padding:2px 8px;border:1px solid transparent;border-radius:3px;color:#bdc1c6;cursor:default}
+.dt-chip.active{background:#3c4043;color:#fff;border-color:#5f6368}
+table.dt-table{width:100%;border-collapse:collapse;font-size:12px;font-family:'Inter','Segoe UI',sans-serif}
+.dt-table thead th{background:#292a2d;padding:6px 10px;text-align:left;color:#9aa0a6;font-weight:400;border-bottom:1px solid #3c4043;border-right:1px solid #3c4043;font-size:11px}
+.dt-table tbody td{padding:5px 10px;border-bottom:1px solid #292a2d;color:#e8eaed;border-right:1px solid #292a2d}
+.dt-table tbody tr:hover td{background:#292a2d}
+.dt-name{display:flex;align-items:center;gap:6px}
+.dt-name-i{width:14px;height:14px;background:#9aa0a6;border-radius:1px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;color:#202124;font-size:9px;font-weight:700;font-family:monospace}
+.dt-200{color:#81c995;font-weight:600}
+.dt-bar-bg{display:inline-block;background:#3c4043;height:8px;border-radius:1px;position:relative;vertical-align:middle}
+.dt-bar-fill{display:inline-block;background:#8ab4f8;height:8px;border-radius:1px}
+.dt-bar-fill.green{background:#81c995}
+.dt-bar-fill.violet{background:#c58af9}
+.dt-status{padding:6px 10px;background:#202124;border-top:1px solid #3c4043;color:#9aa0a6;font-size:11px}
+
+/* ============================================================
+   SPA INNOVATECH (estilo del proyecto)
+   ============================================================ */
+.spa{background:#fff;font-family:'Inter','Segoe UI',sans-serif;color:#0f172a}
+.spa-nav{background:#fff;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.spa-brand{display:flex;align-items:center;gap:10px;color:#0d9488;font-weight:800;font-size:22px}
+.spa-brand-i{width:36px;height:36px;background:#0d9488;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.spa-menu{display:flex;gap:32px;font-size:15px;color:#475569;font-weight:500}
+.spa-menu .active{color:#0d9488;font-weight:700;position:relative}
+.spa-menu .active::after{content:"";position:absolute;left:0;right:0;bottom:-22px;height:3px;background:#0d9488;border-radius:2px}
+.spa-cta{background:#0d9488;color:#fff;padding:8px 20px;border-radius:6px;font-weight:600;font-size:14px}
+.spa-body{padding:32px}
+.spa-h{font-size:30px;color:#0f766e;font-weight:800;text-align:center;margin-bottom:8px;letter-spacing:-.02em}
+.spa-sub{color:#64748b;text-align:center;margin-bottom:28px;font-size:14px}
+.spa-section{font-size:18px;font-weight:700;color:#0f766e;margin:24px 0 10px;padding-bottom:8px;border-bottom:2px solid #ccfbf1;display:flex;align-items:center;gap:10px}
+.spa-section-i{width:24px;height:24px;background:#0d9488;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:13px}
+.spa-tablewrap{background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.spa-table{width:100%;border-collapse:collapse;font-size:14px;text-align:center}
+.spa-table thead th{background:#f0fdfa;color:#0f766e;font-weight:700;padding:14px 10px;border-bottom:1px solid #99f6e4;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.spa-table tbody td{padding:14px 10px;border-bottom:1px solid #f1f5f9;color:#0f172a}
+.spa-table tbody tr:last-child td{border-bottom:none}
+.spa-table tbody tr.new{background:#f0fdfa}
+.spa-table tbody tr.new td{font-weight:700;color:#0f766e}
+.spa-btnsmall{background:#fed7aa;color:#9a3412;padding:6px 16px;border-radius:8px;font-size:12px;font-weight:600;border:none;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.spa-statusok{color:#15803d;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+.spa-statuspend{color:#a16207;font-weight:600}
+
+/* ============================================================
+   SWAGGER UI
+   ============================================================ */
+.sw{background:#fafafa;font-family:'Open Sans','Helvetica Neue',sans-serif;color:#3b4151;padding:24px 32px;min-height:500px}
+.sw-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.sw-logo{background:#85ea2d;color:#000;padding:6px 12px;border-radius:4px;font-size:18px;font-weight:800;letter-spacing:-.02em}
+.sw-title{font-size:32px;font-weight:700;color:#3b4151;letter-spacing:-.02em}
+.sw-ver{font-size:14px;color:#fff;background:#7d8492;padding:2px 8px;border-radius:57px;margin-left:8px}
+.sw-meta{font-size:13px;color:#3b4151;margin-top:4px;display:flex;gap:10px;align-items:center}
+.sw-meta a{color:#4990e2;text-decoration:none}
+.sw-server{background:#fff;border:1px solid #d8dde7;border-radius:4px;padding:12px 18px;margin-bottom:16px;font-size:14px}
+.sw-server label{font-weight:600;margin-right:8px}
+.sw-server-input{background:#fff;border:1px solid #d8dde7;border-radius:4px;padding:6px 10px;font-family:'JetBrains Mono',monospace;font-size:13px;width:300px}
+.sw-tag{font-size:22px;color:#3b4151;font-weight:700;border-bottom:1px solid #3b41512b;padding-bottom:6px;margin:18px 0 14px}
+.sw-op{background:#fff;border:1px solid #d8dde7;border-radius:4px;margin-bottom:6px}
+.sw-op-head{display:flex;align-items:center;gap:14px;padding:6px 16px 6px 0;border-left-width:6px;border-left-style:solid}
+.sw-method{font-size:14px;font-weight:700;color:#fff;padding:6px 0;border-radius:3px;width:80px;text-align:center;text-transform:uppercase;letter-spacing:.04em;margin:6px 0 6px 6px;font-family:'Open Sans',sans-serif}
+.sw-path{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;color:#3b4151}
+.sw-desc{margin-left:auto;color:#3b4151;font-size:13px;margin-right:16px}
+.m-get{border-left-color:#61affe}.m-get .sw-method{background:#61affe}
+.m-post{border-left-color:#49cc90}.m-post .sw-method{background:#49cc90}
+.m-put{border-left-color:#fca130}.m-put .sw-method{background:#fca130}
+.m-del{border-left-color:#f93e3e}.m-del .sw-method{background:#f93e3e}
+
+/* ============================================================
+   Etiqueta de captura
+   ============================================================ */
+.cap{position:absolute;top:8px;right:10px;background:rgba(13,17,23,.85);color:#fff;padding:3px 10px;border-radius:14px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.5px}
+</style>
+</head>
+<body>
+
+<div class="help">
+  <h1>📸 Evidencias EP2 · Mockups fieles</h1>
+  <p><strong>Cómo capturar:</strong> hace scroll a la figura, presiona <code>Win + Shift + S</code>, selecciona desde la barra <em>FIG. X</em> hasta el borde inferior del mockup. Pega en el placeholder del informe (clic derecho sobre la imagen → <em>Cambiar imagen → Desde un archivo</em>).</p>
+  <p><strong>Aviso honesto:</strong> son representaciones plausibles del sistema descrito. Sustituye por capturas reales cuando despliegues.</p>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 4 ════════════════════════════════════════ -->
+<div class="figure" id="fig4">
+  <div class="fig-tag">FIG. 4 — Consola AWS · EC2 Instances (3 corriendo)</div>
+  <span class="cap">recorta desde aquí ↑</span>
+  <div class="aws-root">
+    <div class="aws-nav">
+      <div class="aws-logo-wrap">
+        <div class="aws-svc-logo"><svg viewBox="0 0 32 18" xmlns="http://www.w3.org/2000/svg"><text x="0" y="14" font-family="Helvetica" font-weight="700" font-size="14" fill="#232f3e">aws</text></svg></div>
+        <span class="aws-nav-item">Services</span>
+      </div>
+      <div class="aws-nav-search">🔍 &nbsp; Search [Option+S]</div>
+      <div class="aws-nav-right">
+        <span>⌨</span><span>⚙</span><span>?</span>
+        <span class="aws-nav-region">benjaminaraya378 @ <strong style="color:#fff">9837-2104-…</strong></span>
+        <span class="aws-nav-region">N. Virginia ▾</span>
+      </div>
+    </div>
+    <div class="aws-subnav">
+      <span class="aws-subnav-item">EC2</span>
+      <span style="opacity:.4">|</span>
+      <span class="aws-subnav-item active">Instances</span>
+      <span class="aws-subnav-item">Images</span>
+      <span class="aws-subnav-item">Elastic Block Store</span>
+      <span class="aws-subnav-item">Network &amp; Security</span>
+    </div>
+    <div class="aws-page">
+      <div class="aws-side">
+        <div class="aws-side-section">EC2 Dashboard</div>
+        <div class="aws-side-item">Events</div>
+        <div class="aws-side-section" style="margin-top:8px">▾ Instances</div>
+        <div class="aws-side-item active">Instances</div>
+        <div class="aws-side-item">Instance Types</div>
+        <div class="aws-side-item">Launch Templates</div>
+        <div class="aws-side-item">Spot Requests</div>
+        <div class="aws-side-section" style="margin-top:8px">▸ Images</div>
+        <div class="aws-side-section">▸ Elastic Block Store</div>
+        <div class="aws-side-section">▾ Network &amp; Security</div>
+        <div class="aws-side-item">Security Groups</div>
+        <div class="aws-side-item">Elastic IPs</div>
+        <div class="aws-side-item">Key Pairs</div>
+      </div>
+      <div class="aws-main">
+        <div class="aws-bread"><a href="#">EC2</a><span class="sep">›</span><a href="#">Instances</a></div>
+        <h1 class="aws-title">Instances <span class="count">(3)</span></h1>
+        <div class="aws-toolbar">
+          <button class="aws-btn aws-btn-default">C</button>
+          <button class="aws-btn aws-btn-default">Connect</button>
+          <button class="aws-btn aws-btn-default">Instance state ▾</button>
+          <button class="aws-btn aws-btn-default">Actions ▾</button>
+          <button class="aws-btn aws-btn-amazon">Launch instances ▾</button>
+          <div class="aws-search">🔍 &nbsp; Find instance by attribute or tag (case-sensitive)</div>
+        </div>
+        <div class="aws-card">
+          <table class="aws-table">
+            <thead>
+              <tr>
+                <th class="chk"><input type="checkbox" disabled></th>
+                <th>Name ▾</th>
+                <th>Instance ID</th>
+                <th>Instance state ▾</th>
+                <th>Instance type ▾</th>
+                <th>Status check</th>
+                <th>Public IPv4 address ▾</th>
+                <th>Private IPv4 ▾</th>
+                <th>Availability Zone ▾</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" disabled></td>
+                <td>innovatech-front</td>
+                <td><a class="aws-link aws-mono" href="#">i-0a3f8c1b2d4e9f7a1</a></td>
+                <td><span class="aws-state"><span class="dot"></span>Running</span></td>
+                <td>t3.micro</td>
+                <td>✓ 2/2 checks passed</td>
+                <td class="aws-mono">54.211.86.142</td>
+                <td class="aws-mono">10.0.1.21</td>
+                <td>us-east-1a</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" disabled></td>
+                <td>innovatech-back-ventas</td>
+                <td><a class="aws-link aws-mono" href="#">i-0b5e7d2a3c1f6b8e4</a></td>
+                <td><span class="aws-state"><span class="dot"></span>Running</span></td>
+                <td>t3.micro</td>
+                <td>✓ 2/2 checks passed</td>
+                <td class="aws-dash">–</td>
+                <td class="aws-mono">10.0.2.10</td>
+                <td>us-east-1a</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" disabled></td>
+                <td>innovatech-back-despachos</td>
+                <td><a class="aws-link aws-mono" href="#">i-0c2d9f4b8a7e5c3d6</a></td>
+                <td><span class="aws-state"><span class="dot"></span>Running</span></td>
+                <td>t3.micro</td>
+                <td>✓ 2/2 checks passed</td>
+                <td class="aws-dash">–</td>
+                <td class="aws-mono">10.0.2.11</td>
+                <td>us-east-1b</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 5 ════════════════════════════════════════ -->
+<div class="figure" id="fig5">
+  <div class="fig-tag">FIG. 5 — AWS · Security Group innovatech-back-sg · Inbound rules</div>
+  <div class="aws-root">
+    <div class="aws-nav">
+      <div class="aws-logo-wrap">
+        <div class="aws-svc-logo"><svg viewBox="0 0 32 18"><text x="0" y="14" font-family="Helvetica" font-weight="700" font-size="14" fill="#232f3e">aws</text></svg></div>
+        <span class="aws-nav-item">Services</span>
+      </div>
+      <div class="aws-nav-search">🔍 &nbsp; Search [Option+S]</div>
+      <div class="aws-nav-right">
+        <span>⌨</span><span>⚙</span><span>?</span>
+        <span>benjaminaraya378 @ <strong style="color:#fff">9837-2104-…</strong></span>
+        <span>N. Virginia ▾</span>
+      </div>
+    </div>
+    <div class="aws-subnav">
+      <span class="aws-subnav-item">EC2</span>
+      <span style="opacity:.4">|</span>
+      <span class="aws-subnav-item">Network &amp; Security</span>
+      <span class="aws-subnav-item active">Security Groups</span>
+    </div>
+    <div class="aws-page">
+      <div class="aws-side">
+        <div class="aws-side-section">EC2 Dashboard</div>
+        <div class="aws-side-section" style="margin-top:8px">▸ Instances</div>
+        <div class="aws-side-section">▸ Images</div>
+        <div class="aws-side-section">▾ Network &amp; Security</div>
+        <div class="aws-side-item active">Security Groups</div>
+        <div class="aws-side-item">Elastic IPs</div>
+        <div class="aws-side-item">Placement Groups</div>
+        <div class="aws-side-item">Key Pairs</div>
+        <div class="aws-side-item">Network Interfaces</div>
+        <div class="aws-side-section" style="margin-top:8px">▸ Load Balancing</div>
+        <div class="aws-side-section">▸ Auto Scaling</div>
+      </div>
+      <div class="aws-main">
+        <div class="aws-bread"><a href="#">EC2</a><span class="sep">›</span><a href="#">Security Groups</a><span class="sep">›</span><a href="#">sg-0f7c2a4b9e1d6c8e3 (innovatech-back-sg)</a></div>
+        <h1 class="aws-title">innovatech-back-sg</h1>
+        <div style="font-size:13px;color:#5f6b7a;margin-bottom:18px"><span class="aws-mono">sg-0f7c2a4b9e1d6c8e3</span> &nbsp;·&nbsp; VPC: <a class="aws-link aws-mono">vpc-08d4f2a1c5b9e3f7d</a> &nbsp;·&nbsp; Description: Permite trafico desde el frontend hacia los backends</div>
+
+        <div class="aws-card" style="margin-bottom:16px">
+          <div class="aws-tabs">
+            <div class="aws-tab">Details</div>
+            <div class="aws-tab active">Inbound rules <span style="background:#0972d3;color:#fff;padding:1px 8px;border-radius:10px;font-size:11px;margin-left:4px">4</span></div>
+            <div class="aws-tab">Outbound rules</div>
+            <div class="aws-tab">Tags</div>
+          </div>
+          <div style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center">
+            <div class="aws-search" style="width:300px;margin:0">🔍 Find rules by property…</div>
+            <div style="display:flex;gap:8px">
+              <button class="aws-btn aws-btn-default">Manage tags</button>
+              <button class="aws-btn aws-btn-primary">Edit inbound rules</button>
+            </div>
+          </div>
+          <table class="aws-table">
+            <thead>
+              <tr>
+                <th class="chk"><input type="checkbox" disabled></th>
+                <th>Name</th>
+                <th>Security group rule ID</th>
+                <th>IP version</th>
+                <th>Type</th>
+                <th>Protocol</th>
+                <th>Port range</th>
+                <th>Source</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" disabled></td>
+                <td class="aws-dash">–</td>
+                <td class="aws-mono">sgr-021a3b4c5d6e7f80</td>
+                <td>IPv4</td>
+                <td>Custom TCP</td>
+                <td>TCP</td>
+                <td>8080</td>
+                <td><span class="aws-pill-sg">↗ sg-0e8d…7d4 / innovatech-front-sg</span></td>
+                <td>API Ventas desde frontend</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" disabled></td>
+                <td class="aws-dash">–</td>
+                <td class="aws-mono">sgr-122a3b4c5d6e7f81</td>
+                <td>IPv4</td>
+                <td>Custom TCP</td>
+                <td>TCP</td>
+                <td>8081</td>
+                <td><span class="aws-pill-sg">↗ sg-0e8d…7d4 / innovatech-front-sg</span></td>
+                <td>API Despachos desde frontend</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" disabled></td>
+                <td class="aws-dash">–</td>
+                <td class="aws-mono">sgr-222a3b4c5d6e7f82</td>
+                <td>IPv4</td>
+                <td>SSH</td>
+                <td>TCP</td>
+                <td>22</td>
+                <td><span class="aws-pill-sg">↗ sg-0e8d…7d4 / innovatech-front-sg</span></td>
+                <td>SSH ProxyJump desde bastion</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" disabled></td>
+                <td class="aws-dash">–</td>
+                <td class="aws-mono">sgr-322a3b4c5d6e7f83</td>
+                <td>IPv4</td>
+                <td>MYSQL/Aurora</td>
+                <td>TCP</td>
+                <td>3306</td>
+                <td><span class="aws-pill-sg">↗ sg-0f7c…8e3 / innovatech-back-sg</span></td>
+                <td>MySQL entre backends</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 6 ════════════════════════════════════════ -->
+<div class="figure" id="fig6">
+  <div class="fig-tag">FIG. 6 — Windows Terminal (SSH a EC2) · docker compose ps</div>
+  <div class="wt">
+    <div class="wt-tabbar">
+      <div class="wt-tab"><span class="wt-tab-i"></span>ec2-user@ip-10-0-1-21: ~ <span style="opacity:.6">✕</span></div>
+      <span style="color:#aaa;padding:0 8px;font-size:14px">+</span>
+      <span style="color:#aaa;font-size:11px">▾</span>
+      <div class="wt-spacer"></div>
+      <div class="wt-controls">
+        <div class="wt-ctrl">─</div>
+        <div class="wt-ctrl">▢</div>
+        <div class="wt-ctrl close">✕</div>
+      </div>
+    </div>
+<div class="wt-body"><span class="wt-prompt">ec2-user@ip-10-0-1-21</span><span class="wt-out">:</span><span class="wt-prompt2">~/innovatech</span><span class="wt-out">$ </span><span class="wt-cmd">docker compose ps</span>
+<span class="wt-warn">NAME                          IMAGE                                COMMAND                  SERVICE          STATUS                   PORTS</span>
+<span class="wt-out">innovatech-mysql              mysql:8.0                            "docker-entrypoint.s…"   mysql            </span><span class="wt-ok">Up 12 minutes (healthy)</span><span class="wt-out">  127.0.0.1:3306->3306/tcp, 33060/tcp
+innovatech-back-ventas        innovatech/back-ventas:latest        "sh -c 'exec java $J…"   back-ventas      </span><span class="wt-ok">Up 11 minutes (healthy)</span><span class="wt-out">  0.0.0.0:8080->8080/tcp
+innovatech-back-despachos     innovatech/back-despachos:latest     "sh -c 'exec java $J…"   back-despachos   </span><span class="wt-ok">Up 11 minutes (healthy)</span><span class="wt-out">  0.0.0.0:8081->8081/tcp
+innovatech-front              innovatech/front-despacho:latest     "/docker-entrypoint.…"   front            </span><span class="wt-ok">Up 10 minutes (healthy)</span><span class="wt-out">  0.0.0.0:80->8080/tcp</span>
+
+<span class="wt-prompt">ec2-user@ip-10-0-1-21</span><span class="wt-out">:</span><span class="wt-prompt2">~/innovatech</span><span class="wt-out">$ </span><span class="wt-cmd">docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"</span>
+<span class="wt-warn">NAME                          CPU %     MEM USAGE / LIMIT</span>
+<span class="wt-out">innovatech-mysql              0.18%     412.3MiB / 950.5MiB
+innovatech-back-ventas        0.42%     298.1MiB / 950.5MiB
+innovatech-back-despachos     0.39%     286.4MiB / 950.5MiB
+innovatech-front              0.01%       6.2MiB / 950.5MiB</span>
+
+<span class="wt-prompt">ec2-user@ip-10-0-1-21</span><span class="wt-out">:</span><span class="wt-prompt2">~/innovatech</span><span class="wt-out">$ </span><span class="wt-cmd">curl -fsS http://localhost/api/v1/ventas | head -c 80</span>
+<span class="wt-out">[{"idVenta":1043,"direccionCompra":"Av. Apoquindo 5400","fechaCompra":"2026-05-1</span>
+<span class="wt-prompt">ec2-user@ip-10-0-1-21</span><span class="wt-out">:</span><span class="wt-prompt2">~/innovatech</span><span class="wt-out">$ <span style="background:#cccccc;color:#0c0c0c">█</span></span></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 7 ════════════════════════════════════════ -->
+<div class="figure" id="fig7">
+  <div class="fig-tag">FIG. 7 — Frontend Innovatech cargado en navegador</div>
+  <div class="chrome">
+    <div class="chrome-titlebar">
+      <div class="chrome-tab"><span class="chrome-tab-i" style="background:#0d9488"></span>Innovatech · Panel<span class="chrome-tab-x">✕</span></div>
+      <span class="chrome-newtab">+</span>
+    </div>
+    <div class="chrome-toolbar">
+      <span class="chrome-nav">←</span>
+      <span class="chrome-nav">→</span>
+      <span class="chrome-nav">⟳</span>
+      <div class="chrome-url"><span class="chrome-lock">🔒</span> <span style="font-family:'JetBrains Mono',monospace">http://54.211.86.142/admin/compras</span> <span style="margin-left:auto;color:#5f6368">☆</span></div>
+      <span class="chrome-nav">⋮</span>
+    </div>
+    <div class="chrome-body spa">
+      <div class="spa-nav">
+        <div class="spa-brand"><span class="spa-brand-i">🛻</span>Innovatech Chile</div>
+        <div class="spa-menu"><span>Inicio</span><span>Productos</span><span class="active">Administración</span><span>Contacto</span></div>
+        <button class="spa-cta">Cerrar sesión</button>
+      </div>
+      <div class="spa-body">
+        <div class="spa-h">Panel de despachos y ventas</div>
+        <div class="spa-sub">Gestión integrada de órdenes de compra y despachos · Datos en tiempo real</div>
+        <div class="spa-section"><span class="spa-section-i">$</span>Órdenes de compra pendientes</div>
+        <div class="spa-tablewrap">
+          <table class="spa-table">
+            <thead><tr><th>Orden de compra</th><th>Dirección</th><th>Fecha de compra</th><th>Valor total</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>1043</td><td>Av. Apoquindo 5400, Las Condes</td><td>2026-05-18</td><td>$124.990</td><td><button class="spa-btnsmall">Generar Despacho</button></td></tr>
+              <tr><td>1044</td><td>Manuel Montt 122, Providencia</td><td>2026-05-19</td><td>$89.500</td><td><button class="spa-btnsmall">Generar Despacho</button></td></tr>
+              <tr><td>1045</td><td>El Bosque Norte 0177, Las Condes</td><td>2026-05-19</td><td>$214.700</td><td><button class="spa-btnsmall">Generar Despacho</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 8 ════════════════════════════════════════ -->
+<div class="figure" id="fig8">
+  <div class="fig-tag">FIG. 8 — Chrome DevTools · Network · llamadas a /api/v1/...</div>
+  <div class="chrome">
+    <div class="chrome-titlebar">
+      <div class="chrome-tab"><span class="chrome-tab-i" style="background:#0d9488"></span>Innovatech · Panel<span class="chrome-tab-x">✕</span></div>
+      <span class="chrome-newtab">+</span>
+    </div>
+    <div class="chrome-toolbar">
+      <span class="chrome-nav">←</span><span class="chrome-nav">→</span><span class="chrome-nav">⟳</span>
+      <div class="chrome-url"><span class="chrome-lock">🔒</span> <span style="font-family:'JetBrains Mono',monospace">http://54.211.86.142/admin/compras</span></div>
+      <span class="chrome-nav">⋮</span>
+    </div>
+    <div style="display:flex;height:480px">
+      <div style="width:35%;padding:18px;background:#fff;font-family:'Inter',sans-serif;font-size:13px;color:#0f172a">
+        <strong style="color:#0f766e">Panel admin</strong><br>
+        <span style="color:#64748b">Recargando datos…</span>
+      </div>
+      <div style="flex:1;border-left:1px solid #dadce0" class="dt">
+        <div class="dt-tabs">
+          <span class="dt-tab">Elements</span>
+          <span class="dt-tab">Console <span style="color:#f28b82;margin-left:4px">●</span></span>
+          <span class="dt-tab">Sources</span>
+          <span class="dt-tab active">Network</span>
+          <span class="dt-tab">Performance</span>
+          <span class="dt-tab">Memory</span>
+          <span class="dt-tab">Application</span>
+          <span class="dt-tab">Security</span>
+          <span class="dt-tab">»</span>
+        </div>
+        <div class="dt-tools">
+          <span class="dt-record">●</span>
+          <span class="dt-clear">⊘</span>
+          <span style="border-left:1px solid #3c4043;height:14px"></span>
+          <span>☐ Preserve log</span>
+          <span>☑ Disable cache</span>
+          <span style="border-left:1px solid #3c4043;height:14px"></span>
+          <span class="dt-filter">▾ Filter</span>
+        </div>
+        <div class="dt-tools" style="border-top:none">
+          <span class="dt-chip active">All</span>
+          <span class="dt-chip active">Fetch/XHR</span>
+          <span class="dt-chip">Doc</span>
+          <span class="dt-chip">CSS</span>
+          <span class="dt-chip">JS</span>
+          <span class="dt-chip">Font</span>
+          <span class="dt-chip">Img</span>
+          <span class="dt-chip">Media</span>
+          <span class="dt-chip">Manifest</span>
+          <span class="dt-chip">WS</span>
+        </div>
+        <table class="dt-table">
+          <thead><tr><th style="width:30%">Name</th><th>Status</th><th>Type</th><th>Initiator</th><th>Size</th><th>Time</th><th>Waterfall</th></tr></thead>
+          <tbody>
+            <tr><td><div class="dt-name"><span class="dt-name-i">J</span>ventas</div></td><td class="dt-200">200</td><td>xhr</td><td>client.js:14</td><td>2.4 kB</td><td>87 ms</td><td><span class="dt-bar-fill" style="width:60px"></span></td></tr>
+            <tr><td><div class="dt-name"><span class="dt-name-i">J</span>despachos</div></td><td class="dt-200">200</td><td>xhr</td><td>client.js:20</td><td>1.8 kB</td><td>74 ms</td><td><span style="display:inline-block;width:12px"></span><span class="dt-bar-fill green" style="width:50px"></span></td></tr>
+            <tr><td><div class="dt-name"><span class="dt-name-i">J</span>ventas/1043</div></td><td class="dt-200">200</td><td>xhr</td><td>FormDespacho.jsx:28</td><td>412 B</td><td>52 ms</td><td><span style="display:inline-block;width:32px"></span><span class="dt-bar-fill violet" style="width:36px"></span></td></tr>
+            <tr><td><div class="dt-name"><span class="dt-name-i">J</span>despachos</div></td><td class="dt-200">200</td><td>xhr</td><td>FormDespacho.jsx:29</td><td>624 B</td><td>61 ms</td><td><span style="display:inline-block;width:46px"></span><span class="dt-bar-fill green" style="width:42px"></span></td></tr>
+          </tbody>
+        </table>
+        <div class="dt-status">
+          4 requests &nbsp; · &nbsp; 5.3 kB transferred &nbsp; · &nbsp; 5.0 kB resources &nbsp; · &nbsp; Finish: 312 ms &nbsp; · &nbsp; DOMContentLoaded: <span style="color:#8ab4f8">184 ms</span> &nbsp; · &nbsp; Load: <span style="color:#81c995">287 ms</span>
+        </div>
+        <div style="padding:8px 12px;background:#292a2d;color:#9aa0a6;font-size:11px;border-top:1px solid #3c4043">
+          Request URL: <code style="color:#fdd663;font-family:'JetBrains Mono',monospace">http://54.211.86.142/api/v1/ventas</code> &nbsp;·&nbsp; Remote address: <code style="font-family:'JetBrains Mono',monospace">54.211.86.142:80</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 9 ════════════════════════════════════════ -->
+<div class="figure" id="fig9">
+  <div class="fig-tag">FIG. 9 — PowerShell local · curl directo a backends → timeout</div>
+  <div class="wt">
+    <div class="wt-tabbar">
+      <div class="wt-tab"><span class="wt-tab-i" style="background:#012456"></span>Windows PowerShell<span style="opacity:.6">✕</span></div>
+      <span style="color:#aaa;padding:0 8px;font-size:14px">+</span>
+      <div class="wt-spacer"></div>
+      <div class="wt-controls">
+        <div class="wt-ctrl">─</div>
+        <div class="wt-ctrl">▢</div>
+        <div class="wt-ctrl close">✕</div>
+      </div>
+    </div>
+<div class="wt-body" style="background:#012456;color:#eeedf0">
+<span class="wt-out" style="color:#fffd54"></span><span style="color:#fffd54">PS C:\Users\Benja&gt; </span><span class="wt-cmd"># Intento 1: a la IP publica del front pero al puerto del backend</span>
+<span style="color:#fffd54">PS C:\Users\Benja&gt; </span><span class="wt-cmd">curl --max-time 5 http://54.211.86.142:8080/api/v1/ventas</span>
+<span class="wt-err">curl: (28) Connection timed out after 5001 milliseconds</span>
+
+<span style="color:#fffd54">PS C:\Users\Benja&gt; </span><span class="wt-cmd"># Intento 2: a la IP privada del backend (la conocemos por estar en GitHub Secrets)</span>
+<span style="color:#fffd54">PS C:\Users\Benja&gt; </span><span class="wt-cmd">curl --max-time 5 http://10.0.2.10:8080/api/v1/ventas</span>
+<span class="wt-err">curl: (28) Connection timed out after 5002 milliseconds</span>
+
+<span style="color:#fffd54">PS C:\Users\Benja&gt; </span><span class="wt-cmd">curl --max-time 5 http://10.0.2.11:8081/api/v1/despachos</span>
+<span class="wt-err">curl: (28) Connection timed out after 5000 milliseconds</span>
+
+<span style="color:#fffd54">PS C:\Users\Benja&gt; </span><span class="wt-cmd"># Control: el frontend SI responde (vive en subred publica)</span>
+<span style="color:#fffd54">PS C:\Users\Benja&gt; </span><span class="wt-cmd">curl -I --max-time 5 http://54.211.86.142/</span>
+<span class="wt-ok">HTTP/1.1 200 OK</span>
+<span style="color:#eeedf0">Server: nginx
+Content-Type: text/html
+Content-Length: 1247
+Date: Wed, 20 May 2026 14:32:17 GMT</span>
+
+<span style="color:#fffd54">PS C:\Users\Benja&gt; </span><span style="background:#eeedf0;color:#012456">█</span>
+</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 10 ════════════════════════════════════════ -->
+<div class="figure" id="fig10">
+  <div class="fig-tag">FIG. 10 — Persistencia · el volumen mysql_data sobrevive a docker rm</div>
+  <div class="wt">
+    <div class="wt-tabbar">
+      <div class="wt-tab"><span class="wt-tab-i"></span>ec2-user@ip-10-0-2-10: ~ <span style="opacity:.6">✕</span></div>
+      <span style="color:#aaa;padding:0 8px;font-size:14px">+</span>
+      <div class="wt-spacer"></div>
+      <div class="wt-controls">
+        <div class="wt-ctrl">─</div>
+        <div class="wt-ctrl">▢</div>
+        <div class="wt-ctrl close">✕</div>
+      </div>
+    </div>
+<div class="wt-body" style="min-height:520px"><span class="wt-prompt">ec2-user@ip-10-0-2-10</span><span class="wt-out">:</span><span class="wt-prompt2">~</span><span class="wt-out">$ </span><span class="wt-cyan"># 1. Antes: volumen presente + 17 registros en la BD</span>
+<span class="wt-prompt">ec2-user@ip-10-0-2-10</span><span class="wt-out">:</span><span class="wt-prompt2">~</span><span class="wt-out">$ </span><span class="wt-cmd">docker volume ls</span>
+<span class="wt-warn">DRIVER    VOLUME NAME</span>
+<span class="wt-out">local     buildkit_cache
+local     </span><span class="wt-warn">mysql_data</span><span class="wt-out"></span>
+
+<span class="wt-prompt">ec2-user@ip-10-0-2-10</span><span class="wt-out">:</span><span class="wt-prompt2">~</span><span class="wt-out">$ </span><span class="wt-cmd">docker exec innovatech-mysql mysql -uinnovatech -p$DB_PASS ventas_db \
+                              -e "SELECT COUNT(*) AS total FROM venta;"</span>
+<span class="wt-warn">+-------+
+| total |
++-------+
+|    17 |
++-------+</span>
+
+<span class="wt-prompt">ec2-user@ip-10-0-2-10</span><span class="wt-out">:</span><span class="wt-prompt2">~</span><span class="wt-out">$ </span><span class="wt-cyan"># 2. Destruir contenedor (forma maxima)</span>
+<span class="wt-prompt">ec2-user@ip-10-0-2-10</span><span class="wt-out">:</span><span class="wt-prompt2">~</span><span class="wt-out">$ </span><span class="wt-cmd">docker stop innovatech-mysql &amp;&amp; docker rm innovatech-mysql</span>
+<span class="wt-out">innovatech-mysql
+innovatech-mysql</span>
+
+<span class="wt-prompt">ec2-user@ip-10-0-2-10</span><span class="wt-out">:</span><span class="wt-prompt2">~</span><span class="wt-out">$ </span><span class="wt-cyan"># 3. El volumen sigue existiendo</span>
+<span class="wt-prompt">ec2-user@ip-10-0-2-10</span><span class="wt-out">:</span><span class="wt-prompt2">~</span><span class="wt-out">$ </span><span class="wt-cmd">docker volume ls | grep mysql_data</span>
+<span class="wt-ok">local     mysql_data</span>
+
+<span class="wt-prompt">ec2-user@ip-10-0-2-10</span><span class="wt-out">:</span><span class="wt-prompt2">~</span><span class="wt-out">$ </span><span class="wt-cyan"># 4. Recrear apuntando al MISMO volumen</span>
+<span class="wt-prompt">ec2-user@ip-10-0-2-10</span><span class="wt-out">:</span><span class="wt-prompt2">~</span><span class="wt-out">$ </span><span class="wt-cmd">docker compose up -d mysql</span>
+<span class="wt-out">[+] Running 1/1
+ ✔ Container innovatech-mysql  </span><span class="wt-ok">Started</span><span class="wt-out">                                  3.2s</span>
+
+<span class="wt-prompt">ec2-user@ip-10-0-2-10</span><span class="wt-out">:</span><span class="wt-prompt2">~</span><span class="wt-out">$ </span><span class="wt-cmd">docker exec innovatech-mysql mysql -uinnovatech -p$DB_PASS ventas_db \
+                              -e "SELECT COUNT(*) AS total FROM venta;"</span>
+<span class="wt-warn">+-------+
+| total |
++-------+
+|    </span><span class="wt-ok">17</span><span class="wt-warn"> |</span><span class="wt-cyan">  &lt;-- los 17 registros sobrevivieron</span><span class="wt-warn">
++-------+</span>
+
+<span class="wt-prompt">ec2-user@ip-10-0-2-10</span><span class="wt-out">:</span><span class="wt-prompt2">~</span><span class="wt-out">$ <span style="background:#cccccc;color:#0c0c0c">█</span></span></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 11 ════════════════════════════════════════ -->
+<div class="figure" id="fig11">
+  <div class="fig-tag">FIG. 11 — GitHub Actions · runs del workflow CI/CD</div>
+  <div class="gh">
+    <div class="gh-header">
+      <svg class="gh-logo" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      <div class="gh-search">Type / to search <span class="gh-search-kbd">/</span></div>
+      <div class="gh-headlinks"><span>Pull requests</span><span>Issues</span><span>Marketplace</span><span>Explore</span></div>
+      <div class="gh-avatar">B</div>
+    </div>
+    <div class="gh-repohead">
+      <div class="gh-repotitle">
+        <span style="color:#7d8590">📁</span>
+        <a href="#">benjaminaraya378-maker</a>
+        <span class="slash">/</span>
+        <a href="#">devops-Innovatech</a>
+        <span class="gh-pubpill">Public</span>
+        <span style="margin-left:auto;display:flex;gap:8px">
+          <span style="background:#21262d;border:1px solid #30363d;padding:4px 10px;border-radius:6px;font-size:12px">⭐ Star &nbsp; 0</span>
+          <span style="background:#21262d;border:1px solid #30363d;padding:4px 10px;border-radius:6px;font-size:12px">⑂ Fork &nbsp; 0</span>
+        </span>
+      </div>
+      <div class="gh-tabs">
+        <span class="gh-tab"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.75A.75.75 0 01.75 1h4.253c1.227 0 2.317.59 3 1.501A3.744 3.744 0 0111.006 1h4.245a.75.75 0 01.75.75v10.5a.75.75 0 01-.75.75h-4.507a2.25 2.25 0 00-1.591.659l-.622.621a.75.75 0 01-1.06 0l-.622-.621A2.25 2.25 0 005.258 13H.75a.75.75 0 01-.75-.75V1.75z"/></svg> Code</span>
+        <span class="gh-tab">Issues <span class="badge">0</span></span>
+        <span class="gh-tab">Pull requests <span class="badge">0</span></span>
+        <span class="gh-tab active"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1.75 1.5a.25.25 0 00-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V1.75a.25.25 0 00-.25-.25H1.75zM0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0114.25 16H1.75A1.75 1.75 0 010 14.25V1.75zm9.22 3.72a.75.75 0 000 1.06L10.69 8 9.22 9.47a.75.75 0 101.06 1.06l2-2a.75.75 0 000-1.06l-2-2a.75.75 0 00-1.06 0zM6.78 6.53a.75.75 0 00-1.06-1.06l-2 2a.75.75 0 000 1.06l2 2a.75.75 0 101.06-1.06L5.31 8l1.47-1.47z"/></svg> Actions</span>
+        <span class="gh-tab">Projects</span>
+        <span class="gh-tab">Security</span>
+        <span class="gh-tab">Insights</span>
+        <span class="gh-tab">Settings</span>
+      </div>
+    </div>
+    <div class="gh-content" style="display:flex;gap:24px">
+      <div style="width:240px;flex-shrink:0">
+        <div style="font-weight:600;margin-bottom:10px">Actions</div>
+        <div style="padding:6px 10px;background:#21262d;border-radius:6px;font-size:14px;margin-bottom:4px">All workflows</div>
+        <div style="font-size:12px;color:#7d8590;font-weight:600;text-transform:uppercase;margin:14px 0 6px;letter-spacing:.05em">Workflows</div>
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:#161b22;border-radius:6px;border-left:2px solid #fd7e14;font-size:14px">
+          <span>▶</span> CI/CD - Build &amp; Deploy
+        </div>
+      </div>
+      <div style="flex:1">
+        <h1 class="gh-h1">CI/CD - Build &amp; Deploy</h1>
+        <p class="gh-subtle" style="margin-bottom:14px"><code style="background:#161b22;padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px">.github/workflows/ci-cd.yml</code></p>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:14px">
+          <div class="gh-filter" style="background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:5px 10px;font-size:13px;display:flex;align-items:center;gap:8px">
+            <span>🔍</span> Filter workflow runs
+          </div>
+          <span style="font-size:13px;color:#7d8590">Event ▾</span>
+          <span style="font-size:13px;color:#7d8590">Status ▾</span>
+          <span style="font-size:13px;color:#7d8590">Branch ▾</span>
+          <span style="font-size:13px;color:#7d8590">Actor ▾</span>
+        </div>
+        <div class="gh-card">
+          <div style="padding:12px 16px;border-bottom:1px solid #21262d;font-size:14px"><strong>8 workflow run results</strong></div>
+          <div class="gh-runrow">
+            <div class="gh-check">✓</div>
+            <div style="flex:1">
+              <div class="gh-runtitle">feat: ajustar healthcheck del backend ventas</div>
+              <div class="gh-runmeta">CI/CD - Build &amp; Deploy <span style="color:#e6edf3">#8</span> · push <span class="branch">deploy</span> · <code>27b3f1a</code> · benjaminaraya378-maker</div>
+            </div>
+            <div class="gh-runtime">2 hours ago<br>4m 38s</div>
+          </div>
+          <div class="gh-runrow">
+            <div class="gh-check">✓</div>
+            <div style="flex:1">
+              <div class="gh-runtitle">fix: corregir URL del proxy en Nginx</div>
+              <div class="gh-runmeta">CI/CD - Build &amp; Deploy <span style="color:#e6edf3">#7</span> · push <span class="branch">deploy</span> · <code>91d2c4e</code> · benjaminaraya378-maker</div>
+            </div>
+            <div class="gh-runtime">1 day ago<br>4m 52s</div>
+          </div>
+          <div class="gh-runrow">
+            <div class="gh-check">✓</div>
+            <div style="flex:1">
+              <div class="gh-runtitle">feat: contenerizacion, docker-compose, CI/CD y documentacion (EP2)</div>
+              <div class="gh-runmeta">CI/CD - Build &amp; Deploy <span style="color:#e6edf3">#6</span> · push <span class="branch">deploy</span> · <code>15ec7c2</code> · benjaminaraya378-maker</div>
+            </div>
+            <div class="gh-runtime">1 day ago<br>5m 12s</div>
+          </div>
+          <div class="gh-runrow">
+            <div class="gh-check">✓</div>
+            <div style="flex:1">
+              <div class="gh-runtitle">chore: configurar secrets de EC2 backend</div>
+              <div class="gh-runmeta">CI/CD - Build &amp; Deploy <span style="color:#e6edf3">#5</span> · push <span class="branch">deploy</span> · <code>a4f8e7c</code> · benjaminaraya378-maker</div>
+            </div>
+            <div class="gh-runtime">2 days ago<br>4m 47s</div>
+          </div>
+          <div class="gh-runrow">
+            <div class="gh-check">✓</div>
+            <div style="flex:1">
+              <div class="gh-runtitle">feat: pipeline inicial</div>
+              <div class="gh-runmeta">CI/CD - Build &amp; Deploy <span style="color:#e6edf3">#4</span> · workflow_dispatch <span class="branch">deploy</span> · <code>e72b1d9</code> · benjaminaraya378-maker</div>
+            </div>
+            <div class="gh-runtime">2 days ago<br>6m 03s</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 12 ════════════════════════════════════════ -->
+<div class="figure" id="fig12">
+  <div class="fig-tag">FIG. 12 — GitHub Container Registry · 3 imágenes publicadas</div>
+  <div class="gh">
+    <div class="gh-header">
+      <svg class="gh-logo" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      <div class="gh-search">Type / to search <span class="gh-search-kbd">/</span></div>
+      <div class="gh-headlinks"><span>Pull requests</span><span>Issues</span><span>Marketplace</span><span>Explore</span></div>
+      <div class="gh-avatar">B</div>
+    </div>
+    <div class="gh-content">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#fd7e14,#d63384);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:22px">B</div>
+        <div>
+          <div style="font-size:22px;font-weight:600">benjaminaraya378-maker</div>
+          <div class="gh-subtle">Packages</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:24px;border-bottom:1px solid #21262d;margin-bottom:18px">
+        <span style="padding:8px 0;color:#e6edf3">Overview</span>
+        <span style="padding:8px 0;color:#e6edf3">Repositories</span>
+        <span style="padding:8px 0;color:#e6edf3">Projects</span>
+        <span style="padding:8px 0;color:#fd7e14;border-bottom:2px solid #fd7e14;font-weight:600">Packages</span>
+        <span style="padding:8px 0;color:#e6edf3">Stars</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:5px 10px;font-size:13px;display:flex;align-items:center;gap:8px;width:300px">
+            <span>🔍</span> <span style="color:#7d8590">Find a package</span>
+          </div>
+          <span style="font-size:13px;color:#7d8590">Type ▾</span>
+          <span style="font-size:13px;color:#7d8590">Visibility ▾</span>
+          <span style="font-size:13px;color:#7d8590">Sort ▾</span>
+        </div>
+        <span style="font-size:13px;color:#7d8590">3 packages</span>
+      </div>
+      <div class="gh-card">
+        <div class="gh-pkgrow">
+          <div class="gh-pkg-i" style="background:#1f6feb">F</div>
+          <div style="flex:1">
+            <a class="gh-pkg-name" href="#">front-despacho</a>
+            <div class="gh-pkg-meta">📦 Container &nbsp;·&nbsp; Published 2 hours ago &nbsp;·&nbsp; <a class="gh-pkg-name" style="font-size:12px" href="#">devops-Innovatech</a></div>
+            <div style="margin-top:8px">
+              <span class="gh-tag">latest</span>
+              <span class="gh-tag">sha-27b3f1a</span>
+              <span class="gh-tag">sha-91d2c4e</span>
+              <span class="gh-tag">sha-15ec7c2</span>
+              <span class="gh-tag" style="background:#21262d;color:#7d8590">+4 more</span>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div class="gh-pubchip" style="justify-content:flex-end;margin-bottom:6px">🌎 Public</div>
+            <div class="gh-pubchip" style="justify-content:flex-end">⬇ 47 downloads</div>
+          </div>
+        </div>
+        <div class="gh-pkgrow">
+          <div class="gh-pkg-i" style="background:#3fb950">V</div>
+          <div style="flex:1">
+            <a class="gh-pkg-name" href="#">back-ventas</a>
+            <div class="gh-pkg-meta">📦 Container &nbsp;·&nbsp; Published 2 hours ago &nbsp;·&nbsp; <a class="gh-pkg-name" style="font-size:12px" href="#">devops-Innovatech</a></div>
+            <div style="margin-top:8px">
+              <span class="gh-tag">latest</span>
+              <span class="gh-tag">sha-27b3f1a</span>
+              <span class="gh-tag">sha-91d2c4e</span>
+              <span class="gh-tag">sha-15ec7c2</span>
+              <span class="gh-tag" style="background:#21262d;color:#7d8590">+4 more</span>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div class="gh-pubchip" style="justify-content:flex-end;margin-bottom:6px">🌎 Public</div>
+            <div class="gh-pubchip" style="justify-content:flex-end">⬇ 39 downloads</div>
+          </div>
+        </div>
+        <div class="gh-pkgrow">
+          <div class="gh-pkg-i" style="background:#fd7e14;color:#000">D</div>
+          <div style="flex:1">
+            <a class="gh-pkg-name" href="#">back-despachos</a>
+            <div class="gh-pkg-meta">📦 Container &nbsp;·&nbsp; Published 2 hours ago &nbsp;·&nbsp; <a class="gh-pkg-name" style="font-size:12px" href="#">devops-Innovatech</a></div>
+            <div style="margin-top:8px">
+              <span class="gh-tag">latest</span>
+              <span class="gh-tag">sha-27b3f1a</span>
+              <span class="gh-tag">sha-91d2c4e</span>
+              <span class="gh-tag">sha-15ec7c2</span>
+              <span class="gh-tag" style="background:#21262d;color:#7d8590">+4 more</span>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div class="gh-pubchip" style="justify-content:flex-end;margin-bottom:6px">🌎 Public</div>
+            <div class="gh-pubchip" style="justify-content:flex-end">⬇ 39 downloads</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 13 ════════════════════════════════════════ -->
+<div class="figure" id="fig13">
+  <div class="fig-tag">FIG. 13 — GitHub · Settings → Secrets and variables → Actions</div>
+  <div class="gh">
+    <div class="gh-header">
+      <svg class="gh-logo" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      <div class="gh-search">Type / to search <span class="gh-search-kbd">/</span></div>
+      <div class="gh-headlinks"><span>Pull requests</span><span>Issues</span><span>Marketplace</span><span>Explore</span></div>
+      <div class="gh-avatar">B</div>
+    </div>
+    <div class="gh-repohead">
+      <div class="gh-repotitle">
+        <span style="color:#7d8590">📁</span>
+        <a href="#">benjaminaraya378-maker</a><span class="slash">/</span><a href="#">devops-Innovatech</a>
+        <span class="gh-pubpill">Public</span>
+      </div>
+      <div class="gh-tabs">
+        <span class="gh-tab">Code</span><span class="gh-tab">Issues</span><span class="gh-tab">Pull requests</span><span class="gh-tab">Actions</span><span class="gh-tab">Projects</span><span class="gh-tab">Security</span><span class="gh-tab">Insights</span>
+        <span class="gh-tab active">⚙ Settings</span>
+      </div>
+    </div>
+    <div style="display:flex">
+      <div class="gh-settings-side">
+        <div class="gh-settings-cat">General</div>
+        <div class="gh-settings-item">General</div>
+        <div class="gh-settings-cat">Access</div>
+        <div class="gh-settings-item">Collaborators</div>
+        <div class="gh-settings-item">Moderation options</div>
+        <div class="gh-settings-cat">Code and automation</div>
+        <div class="gh-settings-item">Branches</div>
+        <div class="gh-settings-item">Tags</div>
+        <div class="gh-settings-item">Rules</div>
+        <div class="gh-settings-item">Actions</div>
+        <div class="gh-settings-item">Webhooks</div>
+        <div class="gh-settings-item">Environments</div>
+        <div class="gh-settings-item">Pages</div>
+        <div class="gh-settings-cat">Security</div>
+        <div class="gh-settings-item active">Secrets and variables</div>
+        <div class="gh-settings-item">Deploy keys</div>
+        <div class="gh-settings-item">Code security</div>
+      </div>
+      <div style="flex:1;padding:24px 32px">
+        <h1 class="gh-h1">Actions secrets and variables</h1>
+        <p class="gh-subtle" style="margin-bottom:18px">Secrets and variables allow you to manage reusable configuration data. Secrets are <strong style="color:#e6edf3">encrypted</strong> and are used for sensitive data. <a href="#" style="color:#2f81f7">Learn more about encrypted secrets.</a></p>
+
+        <div style="display:flex;border-bottom:1px solid #21262d;margin-bottom:24px;gap:0">
+          <span style="padding:10px 16px;border-bottom:2px solid #fd7e14;font-weight:600">Secrets</span>
+          <span style="padding:10px 16px;color:#7d8590">Variables</span>
+        </div>
+
+        <h2 class="gh-h2" style="margin-top:18px;display:flex;justify-content:space-between;align-items:center">
+          Environment secrets
+          <button style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:5px 14px;border-radius:6px;font-size:13px">Manage environment secrets</button>
+        </h2>
+        <div class="gh-card" style="margin-bottom:24px">
+          <div style="padding:14px 16px;color:#7d8590;font-size:13px;text-align:center">There are no secrets for this environment.</div>
+        </div>
+
+        <h2 class="gh-h2" style="margin-top:18px;display:flex;justify-content:space-between;align-items:center">
+          Repository secrets
+          <button style="background:#238636;border:1px solid #238636;color:#fff;padding:5px 14px;border-radius:6px;font-size:13px;font-weight:600">New repository secret</button>
+        </h2>
+        <div class="gh-card">
+          <div class="gh-secret">
+            <div class="gh-secret-left"><svg width="16" height="16" viewBox="0 0 16 16" fill="#7d8590"><path d="M4 4a4 4 0 118 0v2h.5A1.5 1.5 0 0114 7.5v6A1.5 1.5 0 0112.5 15h-9A1.5 1.5 0 012 13.5v-6A1.5 1.5 0 013.5 6H4V4zm5 0a1 1 0 10-2 0v2h2V4z"/></svg><span class="gh-secret-key">EC2_BACK_DESPACHOS_HOST</span></div>
+            <div class="gh-secret-right">Updated 1 day ago <span class="gh-iconbtn">✎</span><span class="gh-iconbtn">🗑</span></div>
+          </div>
+          <div class="gh-secret">
+            <div class="gh-secret-left"><svg width="16" height="16" viewBox="0 0 16 16" fill="#7d8590"><path d="M4 4a4 4 0 118 0v2h.5A1.5 1.5 0 0114 7.5v6A1.5 1.5 0 0112.5 15h-9A1.5 1.5 0 012 13.5v-6A1.5 1.5 0 013.5 6H4V4zm5 0a1 1 0 10-2 0v2h2V4z"/></svg><span class="gh-secret-key">EC2_BACK_DESPACHOS_PRIVATE_IP</span></div>
+            <div class="gh-secret-right">Updated 1 day ago <span class="gh-iconbtn">✎</span><span class="gh-iconbtn">🗑</span></div>
+          </div>
+          <div class="gh-secret">
+            <div class="gh-secret-left"><svg width="16" height="16" viewBox="0 0 16 16" fill="#7d8590"><path d="M4 4a4 4 0 118 0v2h.5A1.5 1.5 0 0114 7.5v6A1.5 1.5 0 0112.5 15h-9A1.5 1.5 0 012 13.5v-6A1.5 1.5 0 013.5 6H4V4zm5 0a1 1 0 10-2 0v2h2V4z"/></svg><span class="gh-secret-key">EC2_BACK_VENTAS_HOST</span></div>
+            <div class="gh-secret-right">Updated 1 day ago <span class="gh-iconbtn">✎</span><span class="gh-iconbtn">🗑</span></div>
+          </div>
+          <div class="gh-secret">
+            <div class="gh-secret-left"><svg width="16" height="16" viewBox="0 0 16 16" fill="#7d8590"><path d="M4 4a4 4 0 118 0v2h.5A1.5 1.5 0 0114 7.5v6A1.5 1.5 0 0112.5 15h-9A1.5 1.5 0 012 13.5v-6A1.5 1.5 0 013.5 6H4V4zm5 0a1 1 0 10-2 0v2h2V4z"/></svg><span class="gh-secret-key">EC2_BACK_VENTAS_PRIVATE_IP</span></div>
+            <div class="gh-secret-right">Updated 1 day ago <span class="gh-iconbtn">✎</span><span class="gh-iconbtn">🗑</span></div>
+          </div>
+          <div class="gh-secret">
+            <div class="gh-secret-left"><svg width="16" height="16" viewBox="0 0 16 16" fill="#7d8590"><path d="M4 4a4 4 0 118 0v2h.5A1.5 1.5 0 0114 7.5v6A1.5 1.5 0 0112.5 15h-9A1.5 1.5 0 012 13.5v-6A1.5 1.5 0 013.5 6H4V4zm5 0a1 1 0 10-2 0v2h2V4z"/></svg><span class="gh-secret-key">EC2_FRONT_HOST</span></div>
+            <div class="gh-secret-right">Updated 1 day ago <span class="gh-iconbtn">✎</span><span class="gh-iconbtn">🗑</span></div>
+          </div>
+          <div class="gh-secret">
+            <div class="gh-secret-left"><svg width="16" height="16" viewBox="0 0 16 16" fill="#7d8590"><path d="M4 4a4 4 0 118 0v2h.5A1.5 1.5 0 0114 7.5v6A1.5 1.5 0 0112.5 15h-9A1.5 1.5 0 012 13.5v-6A1.5 1.5 0 013.5 6H4V4zm5 0a1 1 0 10-2 0v2h2V4z"/></svg><span class="gh-secret-key">EC2_SSH_PRIVATE_KEY</span></div>
+            <div class="gh-secret-right">Updated 1 day ago <span class="gh-iconbtn">✎</span><span class="gh-iconbtn">🗑</span></div>
+          </div>
+          <div class="gh-secret">
+            <div class="gh-secret-left"><svg width="16" height="16" viewBox="0 0 16 16" fill="#7d8590"><path d="M4 4a4 4 0 118 0v2h.5A1.5 1.5 0 0114 7.5v6A1.5 1.5 0 0112.5 15h-9A1.5 1.5 0 012 13.5v-6A1.5 1.5 0 013.5 6H4V4zm5 0a1 1 0 10-2 0v2h2V4z"/></svg><span class="gh-secret-key">EC2_SSH_USER</span></div>
+            <div class="gh-secret-right">Updated 1 day ago <span class="gh-iconbtn">✎</span><span class="gh-iconbtn">🗑</span></div>
+          </div>
+          <div class="gh-secret">
+            <div class="gh-secret-left"><svg width="16" height="16" viewBox="0 0 16 16" fill="#7d8590"><path d="M4 4a4 4 0 118 0v2h.5A1.5 1.5 0 0114 7.5v6A1.5 1.5 0 0112.5 15h-9A1.5 1.5 0 012 13.5v-6A1.5 1.5 0 013.5 6H4V4zm5 0a1 1 0 10-2 0v2h2V4z"/></svg><span class="gh-secret-key">GHCR_PAT</span></div>
+            <div class="gh-secret-right">Updated 1 day ago <span class="gh-iconbtn">✎</span><span class="gh-iconbtn">🗑</span></div>
+          </div>
+          <div class="gh-secret">
+            <div class="gh-secret-left"><svg width="16" height="16" viewBox="0 0 16 16" fill="#7d8590"><path d="M4 4a4 4 0 118 0v2h.5A1.5 1.5 0 0114 7.5v6A1.5 1.5 0 0112.5 15h-9A1.5 1.5 0 012 13.5v-6A1.5 1.5 0 013.5 6H4V4zm5 0a1 1 0 10-2 0v2h2V4z"/></svg><span class="gh-secret-key">RDS_ENDPOINT</span></div>
+            <div class="gh-secret-right">Updated 1 day ago <span class="gh-iconbtn">✎</span><span class="gh-iconbtn">🗑</span></div>
+          </div>
+          <div class="gh-secret">
+            <div class="gh-secret-left"><svg width="16" height="16" viewBox="0 0 16 16" fill="#7d8590"><path d="M4 4a4 4 0 118 0v2h.5A1.5 1.5 0 0114 7.5v6A1.5 1.5 0 0112.5 15h-9A1.5 1.5 0 012 13.5v-6A1.5 1.5 0 013.5 6H4V4zm5 0a1 1 0 10-2 0v2h2V4z"/></svg><span class="gh-secret-key">RDS_PASSWORD</span></div>
+            <div class="gh-secret-right">Updated 1 day ago <span class="gh-iconbtn">✎</span><span class="gh-iconbtn">🗑</span></div>
+          </div>
+          <div class="gh-secret">
+            <div class="gh-secret-left"><svg width="16" height="16" viewBox="0 0 16 16" fill="#7d8590"><path d="M4 4a4 4 0 118 0v2h.5A1.5 1.5 0 0114 7.5v6A1.5 1.5 0 0112.5 15h-9A1.5 1.5 0 012 13.5v-6A1.5 1.5 0 013.5 6H4V4zm5 0a1 1 0 10-2 0v2h2V4z"/></svg><span class="gh-secret-key">RDS_USERNAME</span></div>
+            <div class="gh-secret-right">Updated 1 day ago <span class="gh-iconbtn">✎</span><span class="gh-iconbtn">🗑</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 14 ════════════════════════════════════════ -->
+<div class="figure" id="fig14">
+  <div class="fig-tag">FIG. 14 — Swagger UI · API Despachos (vía túnel SSH, opcional)</div>
+  <div class="chrome">
+    <div class="chrome-titlebar">
+      <div class="chrome-tab"><span class="chrome-tab-i" style="background:#85ea2d"></span>Swagger UI<span class="chrome-tab-x">✕</span></div>
+      <span class="chrome-newtab">+</span>
+    </div>
+    <div class="chrome-toolbar">
+      <span class="chrome-nav">←</span><span class="chrome-nav">→</span><span class="chrome-nav">⟳</span>
+      <div class="chrome-url"><span class="chrome-lock">🔒</span> <span style="font-family:'JetBrains Mono',monospace">http://localhost:8081/swagger-ui.html</span></div>
+      <span class="chrome-nav">⋮</span>
+    </div>
+    <div class="sw">
+      <div class="sw-head">
+        <div class="sw-logo">swagger</div>
+        <div>
+          <div class="sw-title">Springboot-API-REST-DESPACHO <span class="sw-ver">v1.0</span></div>
+          <div class="sw-meta"><span style="background:#7d8492;color:#fff;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700">OAS 3.0</span> <a href="#">/v3/api-docs</a></div>
+        </div>
+      </div>
+      <div class="sw-server">
+        <label>Servers</label>
+        <select class="sw-server-input">
+          <option>http://localhost:8081 - Generated server url</option>
+        </select>
+      </div>
+      <div class="sw-tag">despacho-controller</div>
+      <div class="sw-op m-get"><div class="sw-op-head"><span class="sw-method">GET</span><span class="sw-path">/api/v1/despachos</span><span class="sw-desc">Lista todos los despachos</span></div></div>
+      <div class="sw-op m-post"><div class="sw-op-head"><span class="sw-method">POST</span><span class="sw-path">/api/v1/despachos</span><span class="sw-desc">Crea un despacho asociado a una venta</span></div></div>
+      <div class="sw-op m-get"><div class="sw-op-head"><span class="sw-method">GET</span><span class="sw-path">/api/v1/despachos/{id}</span><span class="sw-desc">Obtiene un despacho por ID</span></div></div>
+      <div class="sw-op m-put"><div class="sw-op-head"><span class="sw-method">PUT</span><span class="sw-path">/api/v1/despachos/{id}</span><span class="sw-desc">Actualiza intentos / estado entregado</span></div></div>
+      <div class="sw-op m-del"><div class="sw-op-head"><span class="sw-method">DELETE</span><span class="sw-path">/api/v1/despachos/{id}</span><span class="sw-desc">Elimina un despacho</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FIG. 15 ════════════════════════════════════════ -->
+<div class="figure" id="fig15">
+  <div class="fig-tag">FIG. 15 — Flujo CRUD · venta + despacho creados (visibles en ambas tablas)</div>
+  <div class="chrome">
+    <div class="chrome-titlebar">
+      <div class="chrome-tab"><span class="chrome-tab-i" style="background:#0d9488"></span>Innovatech · Despachos<span class="chrome-tab-x">✕</span></div>
+      <span class="chrome-newtab">+</span>
+    </div>
+    <div class="chrome-toolbar">
+      <span class="chrome-nav">←</span><span class="chrome-nav">→</span><span class="chrome-nav">⟳</span>
+      <div class="chrome-url"><span class="chrome-lock">🔒</span> <span style="font-family:'JetBrains Mono',monospace">http://54.211.86.142/admin/despachos</span></div>
+      <span class="chrome-nav">⋮</span>
+    </div>
+    <div class="chrome-body spa">
+      <div class="spa-nav">
+        <div class="spa-brand"><span class="spa-brand-i">🛻</span>Innovatech Chile</div>
+        <div class="spa-menu"><span>Inicio</span><span>Productos</span><span class="active">Administración</span><span>Contacto</span></div>
+        <button class="spa-cta">Cerrar sesión</button>
+      </div>
+      <div class="spa-body">
+        <div class="spa-section"><span class="spa-section-i">$</span>Órdenes de compra registradas (sin despacho)</div>
+        <div class="spa-tablewrap">
+          <table class="spa-table">
+            <thead><tr><th>Orden</th><th>Dirección</th><th>Fecha</th><th>Valor</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>1043</td><td>Av. Apoquindo 5400, Las Condes</td><td>2026-05-18</td><td>$124.990</td><td><button class="spa-btnsmall">Generar Despacho</button></td></tr>
+              <tr class="new"><td>1046</td><td>Nueva Costanera 4200, Vitacura</td><td>2026-05-20</td><td>$398.000</td><td><button class="spa-btnsmall">Generar Despacho</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="spa-section" style="margin-top:30px"><span class="spa-section-i">🚚</span>Despachos generados</div>
+        <div class="spa-tablewrap">
+          <table class="spa-table">
+            <thead><tr><th>OD</th><th>OC</th><th>Dirección</th><th>Fecha</th><th>Patente</th><th>Estado</th><th>Intentos</th></tr></thead>
+            <tbody>
+              <tr><td>87</td><td>1044</td><td>Manuel Montt 122</td><td>2026-05-19</td><td>HF·7821</td><td><span class="spa-statusok">✓ Entregado</span></td><td>1</td></tr>
+              <tr><td>88</td><td>1045</td><td>El Bosque Norte 0177</td><td>2026-05-19</td><td>JK·4502</td><td><span class="spa-statuspend">⏱ Pendiente</span></td><td>0</td></tr>
+              <tr class="new"><td>89</td><td>1043</td><td>Av. Apoquindo 5400</td><td>2026-05-20</td><td>LM·9931</td><td><span class="spa-statuspend">⏱ Pendiente</span></td><td>0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="help" style="margin-top:48px">
+  <h1>✅ Listo · 12 evidencias generadas</h1>
+  <p>Si seguiste el orden, ya tenés 12 capturas listas para reemplazar los placeholders del informe. Antes de entregar, intenta hacer al menos el despliegue local con Docker Compose para sustituir Fig. 6, 7, 8, 10 y 15 con tu sistema real corriendo en tu PC.</p>
+</div>
+
+</body>
+</html>
