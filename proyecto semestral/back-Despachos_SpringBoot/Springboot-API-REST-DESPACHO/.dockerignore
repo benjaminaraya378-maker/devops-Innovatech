@@ -6,7 +6,7 @@
 
 # Ignora dependencias locales
 target/
-.mvn/
+.mvn/wrapper/maven-wrapper.jar
 .settings/
 
 # Ignora control de versiones y sistema de build

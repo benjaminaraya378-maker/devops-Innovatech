@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { apiDespachos } from "../../api/client";
 import { Modal } from "./Modal";
 import { FormCierreDespacho } from "./FormCierreDespacho";
 
@@ -7,17 +7,10 @@ export const TableDespachos = () => {
   const [despachos, setDespachos] = useState([]);
 
   const despacho = async () => {
-    await axios
-      .get("http://192.168.3.20/api/v1/despachos", {
-        headers:{
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-        }
-      })
-      .then((response) => {
-        console.log(response.data);
-        setDespachos(response.data);
-      });
+    await apiDespachos.get("").then((response) => {
+      console.log(response.data);
+      setDespachos(response.data);
+    });
   };
   // Llamada a la función para obtener los datos cuando el componente se monta
   useEffect(() => {
@@ -51,7 +44,7 @@ export const TableDespachos = () => {
               </thead>
               <tbody>
                 {despachos
-               
+
                 .map((despacho) => (
                   <tr key={despacho.idDespacho}>
                     <td className="pr-10 py-10 items-center">{despacho.idDespacho}</td>

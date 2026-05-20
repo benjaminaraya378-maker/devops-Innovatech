@@ -1,0 +1,162 @@
+# =====================================================
+# CI/CD - Innovatech Chile
+# Build matricial paralela -> GHCR -> Deploy SSH a EC2
+# Disparador: push a rama 'deploy' o ejecucion manual.
+# =====================================================
+name: CI/CD - Build & Deploy
+
+on:
+  push:
+    branches: [ deploy ]
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_OWNER: ${{ github.repository_owner }}
+
+jobs:
+  # ---------------------------------------------------
+  # Job 1: Construir las 3 imagenes en paralelo y publicarlas en GHCR
+  # ---------------------------------------------------
+  build-and-push:
+    name: Build & Push (${{ matrix.service }})
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - service: front-despacho
+            context: ./proyecto semestral/front_despacho
+          - service: back-ventas
+            context: ./proyecto semestral/back-Ventas_SpringBoot/Springboot-API-REST
+          - service: back-despachos
+            context: ./proyecto semestral/back-Despachos_SpringBoot/Springboot-API-REST-DESPACHO
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login a GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Metadata (tags y labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ matrix.service }}
+          tags: |
+            type=raw,value=latest
+            type=sha,format=long
+
+      - name: Build & Push
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.context }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha,scope=${{ matrix.service }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.service }}
+
+  # ---------------------------------------------------
+  # Job 2: Desplegar en las 3 EC2 (solo si build paso)
+  # Usa ProxyJump a traves de la EC2 frontend para alcanzar las EC2 privadas.
+  # ---------------------------------------------------
+  deploy:
+    name: Deploy a EC2
+    needs: build-and-push
+    if: github.ref == 'refs/heads/deploy'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set image tag (SHA del commit)
+        id: tag
+        run: echo "SHA=${{ github.sha }}" >> $GITHUB_OUTPUT
+
+      # -------- FRONTEND (EC2 publica) --------
+      - name: Deploy frontend
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_FRONT_HOST }}
+          username: ${{ secrets.EC2_SSH_USER }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            set -euo pipefail
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            IMAGE="ghcr.io/${{ env.IMAGE_OWNER }}/front-despacho:sha-${{ steps.tag.outputs.SHA }}"
+            docker pull "$IMAGE"
+            docker tag  "$IMAGE" innovatech/front-despacho:latest
+            docker stop innovatech-front 2>/dev/null || true
+            docker rm   innovatech-front 2>/dev/null || true
+            docker run -d --name innovatech-front --restart unless-stopped \
+              -p 80:8080 \
+              -e BACK_VENTAS_URL="http://${{ secrets.EC2_BACK_VENTAS_PRIVATE_IP }}:8080" \
+              -e BACK_DESPACHOS_URL="http://${{ secrets.EC2_BACK_DESPACHOS_PRIVATE_IP }}:8081" \
+              innovatech/front-despacho:latest
+            docker image prune -f
+
+      # -------- BACKEND VENTAS (EC2 privada, ProxyJump) --------
+      - name: Deploy back-ventas
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_BACK_VENTAS_HOST }}
+          username: ${{ secrets.EC2_SSH_USER }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          proxy_host: ${{ secrets.EC2_FRONT_HOST }}
+          proxy_username: ${{ secrets.EC2_SSH_USER }}
+          proxy_key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            set -euo pipefail
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            IMAGE="ghcr.io/${{ env.IMAGE_OWNER }}/back-ventas:sha-${{ steps.tag.outputs.SHA }}"
+            docker pull "$IMAGE"
+            docker tag  "$IMAGE" innovatech/back-ventas:latest
+            docker stop innovatech-back-ventas 2>/dev/null || true
+            docker rm   innovatech-back-ventas 2>/dev/null || true
+            docker run -d --name innovatech-back-ventas --restart unless-stopped \
+              -p 8080:8080 \
+              -e DB_ENDPOINT="${{ secrets.RDS_ENDPOINT }}" \
+              -e DB_PORT="3306" \
+              -e DB_NAME="ventas_db" \
+              -e DB_USERNAME="${{ secrets.RDS_USERNAME }}" \
+              -e DB_PASSWORD="${{ secrets.RDS_PASSWORD }}" \
+              innovatech/back-ventas:latest
+            docker image prune -f
+
+      # -------- BACKEND DESPACHOS (EC2 privada, ProxyJump) --------
+      - name: Deploy back-despachos
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_BACK_DESPACHOS_HOST }}
+          username: ${{ secrets.EC2_SSH_USER }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          proxy_host: ${{ secrets.EC2_FRONT_HOST }}
+          proxy_username: ${{ secrets.EC2_SSH_USER }}
+          proxy_key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            set -euo pipefail
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            IMAGE="ghcr.io/${{ env.IMAGE_OWNER }}/back-despachos:sha-${{ steps.tag.outputs.SHA }}"
+            docker pull "$IMAGE"
+            docker tag  "$IMAGE" innovatech/back-despachos:latest
+            docker stop innovatech-back-despachos 2>/dev/null || true
+            docker rm   innovatech-back-despachos 2>/dev/null || true
+            docker run -d --name innovatech-back-despachos --restart unless-stopped \
+              -p 8081:8081 \
+              -e DB_ENDPOINT="${{ secrets.RDS_ENDPOINT }}" \
+              -e DB_PORT="3306" \
+              -e DB_NAME="despachos_db" \
+              -e DB_USERNAME="${{ secrets.RDS_USERNAME }}" \
+              -e DB_PASSWORD="${{ secrets.RDS_PASSWORD }}" \
+              innovatech/back-despachos:latest
+            docker image prune -f

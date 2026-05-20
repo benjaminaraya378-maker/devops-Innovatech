@@ -1,0 +1,142 @@
+# =====================================================
+# Innovatech Chile - Stack completo (local / single-host)
+# =====================================================
+# 4 servicios | 2 redes (segmentadas) | 1 volumen persistente
+#
+# Uso local:
+#   cp .env.example .env  # editar credenciales
+#   docker compose up -d --build
+#
+# En produccion (EC2) cada servicio corre en su propia instancia,
+# pero la topologia logica es la misma.
+
+services:
+
+  # ------------------ Base de datos ------------------
+  mysql:
+    image: mysql:8.0
+    container_name: innovatech-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
+      MYSQL_DATABASE: ${DB_NAME_VENTAS:-ventas_db}
+      MYSQL_USER: ${DB_USERNAME:-innovatech}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-innovatechpass}
+    volumes:
+      # Volumen NOMBRADO: persistencia gestionada por Docker.
+      # Justificacion en README.md raiz.
+      - mysql_data:/var/lib/mysql
+      # init.sql crea la segunda base de datos al primer arranque
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      # Solo localhost: util para debug, no expone MySQL a la red
+      - "127.0.0.1:3306:3306"
+    networks:
+      - backend-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot",
+             "-p${MYSQL_ROOT_PASSWORD:-rootpass}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ------------------ Backend VENTAS ------------------
+  back-ventas:
+    build:
+      context: ./back-Ventas_SpringBoot/Springboot-API-REST
+      dockerfile: Dockerfile
+    image: innovatech/back-ventas:latest
+    container_name: innovatech-back-ventas
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_ENDPOINT: mysql
+      DB_PORT: "3306"
+      DB_NAME: ${DB_NAME_VENTAS:-ventas_db}
+      DB_USERNAME: ${DB_USERNAME:-innovatech}
+      DB_PASSWORD: ${DB_PASSWORD:-innovatechpass}
+    ports:
+      - "8080:8080"
+    networks:
+      - backend-net
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/api/v1/ventas"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+  # ------------------ Backend DESPACHOS ------------------
+  back-despachos:
+    build:
+      context: ./back-Despachos_SpringBoot/Springboot-API-REST-DESPACHO
+      dockerfile: Dockerfile
+    image: innovatech/back-despachos:latest
+    container_name: innovatech-back-despachos
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_ENDPOINT: mysql
+      DB_PORT: "3306"
+      DB_NAME: ${DB_NAME_DESPACHOS:-despachos_db}
+      DB_USERNAME: ${DB_USERNAME:-innovatech}
+      DB_PASSWORD: ${DB_PASSWORD:-innovatechpass}
+    ports:
+      - "8081:8081"
+    networks:
+      - backend-net
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8081/api/v1/despachos"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+  # ------------------ Frontend ------------------
+  front:
+    build:
+      context: ./front_despacho
+      dockerfile: Dockerfile
+    image: innovatech/front-despacho:latest
+    container_name: innovatech-front
+    restart: unless-stopped
+    depends_on:
+      - back-ventas
+      - back-despachos
+    environment:
+      # En local apuntan al nombre del servicio en la red Docker.
+      # En produccion se reemplazan por las IP privadas de las EC2 backend
+      # (via secret BACK_*_URL inyectado por el pipeline).
+      BACK_VENTAS_URL: ${BACK_VENTAS_URL:-http://back-ventas:8080}
+      BACK_DESPACHOS_URL: ${BACK_DESPACHOS_URL:-http://back-despachos:8081}
+    ports:
+      - "80:8080"
+    networks:
+      # Frontend es el unico que pertenece a AMBAS redes: puente entre
+      # Internet (frontend-net) y la subred privada (backend-net).
+      - frontend-net
+      - backend-net
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+# Dos bridges segmentados: replica a nivel local el diseño AWS
+# (subred publica vs subred privada).
+networks:
+  frontend-net:
+    driver: bridge
+  backend-net:
+    driver: bridge
+
+# Volumen nombrado: gestionado por Docker, sobrevive a `docker compose down`
+volumes:
+  mysql_data:
+    driver: local
